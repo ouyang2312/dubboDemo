@@ -9,6 +9,8 @@ import java.io.Serializable;
  */
 public class Book implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private int id;
     private String name;
 
@@ -29,5 +31,13 @@ public class Book implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

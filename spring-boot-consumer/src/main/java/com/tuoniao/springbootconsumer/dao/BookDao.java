@@ -1,10 +1,9 @@
 package com.tuoniao.springbootconsumer.dao;
 
 import com.entity.Book;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 /**
  * @author oy
@@ -16,6 +15,16 @@ public interface BookDao {
 
     @Select("select * from book where id = #{id}")
     @ResultType(Book.class)
-    public Book getBook(@Param("id") String id);
+    Book getBook(@Param("id") String id);
 
+
+    @Select("select * from book order by id asc limit #{pageStart},#{pageSize}")
+    @ResultType(Book.class)
+    List<Book> listBook(@Param("pageStart") int pageStart,@Param("pageSize") int pageSize);
+
+    @Insert("insert into book values(#{id},#{name})")
+    void addBook(Book book);
+
+    @Update("update book set name = #{name} where id = #{id}")
+    void updateBook(Book book);
 }

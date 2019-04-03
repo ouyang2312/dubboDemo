@@ -13,7 +13,7 @@ import com.service.UserService;
 @Service
 public class UserServiceForComsumer{
 
-    @Reference
+    @Reference(check = false)
     UserService userService;
 
     /**
