@@ -1,5 +1,6 @@
 package com.tuoniao.springbootconsumer.service.impl;
 
+import com.github.wxpay.sdk.WXPayConstants;
 import com.github.wxpay.sdk.WXPayUtil;
 import com.tuoniao.springbootconsumer.service.WeixinPayService;
 import com.util.HttpClient;
@@ -36,7 +37,7 @@ public class WeixinPayServiceImpl implements WeixinPayService {
 		param.put("trade_type", "NATIVE");//交易类型
 			
 		try {
-			String xmlParam = WXPayUtil.generateSignedXml(param, partnerkey);
+			String xmlParam = WXPayUtil.generateSignedXml(param, partnerkey, WXPayConstants.SignType.MD5);//生成签名 MD5方式 并将参数弄成xml形式
 			System.out.println("请求的参数："+xmlParam);
 			
 			//2.发送请求			
